@@ -32,7 +32,7 @@ git clone https://github.com/<your-username>/Frontend.git
 
 ## Note
 
-If you already have a copy of the repository in your local computer, make sure you pull before you do anything
+If you already have a copy of the repository in your local computer, make sure you sync fork of your forked repo to the organisations repo to make sure you're up to date, then on your local machine, run git pull
 ```
 git pull
 ```
