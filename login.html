@@ -24,7 +24,7 @@
       crossorigin="anonymous"
     />
 
-	<!-- external css -->
+    <!-- external css -->
     <link rel="stylesheet" href="./styles.css" />
 
     <title>Log In</title>
@@ -63,13 +63,46 @@
       </div>
     </nav>
 
-	<section id="header">
-		<div class="container header">
-		  
-		  <div class="#">
-			Sign up to get started
-		  </div>
-		</div>
-	  </section>
+    <section id="login-form" class="container header">
+      <div class="login-title">Log in to your PowerUp Account</div>
+      <form>
+        <div class="login-form">
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control input-login"
+              id="input-email"
+              aria-describedby="emailHelp"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="mb-4">
+            <input
+              type="password"
+              class="form-control input-login"
+              id="input-password"
+              placeholder="Password"
+              required
+            />
+          </div>
+        </div>
+        <div class="mt-4">
+          <button id="sign-in-button" class="btn btn-dark login-button" type="button">
+            Log in
+          </button>
+          <span>
+            <a class="login-link" href="#">Forgot password?</a>
+          </span>
+        <!-- </div>
+        <div class="mt-4 d-flex flex-column flex-md-row align-items-center justify-content-md-between">
+          <button id="sign-in-button" class="btn btn-dark login-button mb-2 mb-md-0" type="button">
+            Log in
+          </button>
+          <a class="ms-0 ms-md-4 login-link" href="#">Forgot password?</a>
+        </div> -->
+        
+      </form>
+    </section>
   </body>
 </html>
