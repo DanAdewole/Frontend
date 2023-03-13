@@ -129,6 +129,8 @@ a {
   line-height: 1.2;
 }
 
+/* Sign Up Form */
+
 .hide-on-mobile {
   font-weight: 400;
   font-style: normal;
@@ -178,8 +180,18 @@ input[type="text"] {
   width: 90%;
 }
 
+.row input[type="email"] {
+  padding: 10px 10px 10px 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+  font-size: 13px;
+  width: 90%;
+}
+
 input:focus {
   outline: none;
+  color: #000000;
 }
 
 .label-text {
@@ -220,6 +232,91 @@ option {
   padding-left: 30px;
 }
 
+/* LogIn Form */
+#login-form {
+  text-align: left;
+}
+
+.login-title {
+  margin-top: 7rem;
+  font-weight: 600;
+  font-family: "Inter-SemiBold", "Inter", sans-serif;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0px;
+}
+
+.login-form {
+  margin-top: 2rem;
+}
+
+.input-login {
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.input-login:focus {
+  box-shadow: none;
+}
+
+.login-button {
+  border-radius: 20px;
+  padding: 10px 15px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.login-link {
+  color: #000000;
+  font-size: 16px;
+  line-height: 1.2;
+  padding-left: 15px;
+}
+
+.login-link:hover {
+  color: #666666;
+}
+
+/* About Us */
+.about-top-section {
+  text-align: left;
+  max-width: 70%;
+}
+
+.about-top-section h1 {
+  padding-top: 50px;
+}
+
+.about-top-section h3 {
+  padding: 40px 0 20px;
+  font-weight: 700;
+  color: var(--token-b9c3c957-2c66-49c4-9732-fa196fddac20, #001122);
+  font-size: 24px;
+  letter-spacing: 0px;
+  line-height: 1;
+}
+
+.about-top-section p {
+  color: #4f4f4f;
+  font-size: 20px;
+  letter-spacing: 0px;
+  line-height: 1.6;
+}
+
+.about-top-section ol {
+  font-family: "Inter", sans-serif;
+  color: #000000;
+  font-size: 17px;
+  letter-spacing: 0px;
+  line-height: 2.1;
+  margin-bottom: 10rem;
+}
+
+.about-footer .footer{
+  color: var(--token-fb4b67b5-91ba-4b73-b4a6-f55417ea1c0c, #666666);
+  margin-bottom: 10px;
+}
+
 @media (min-width: 1200px) {
   .form-container {
     max-width: 700px;
@@ -230,11 +327,31 @@ option {
   .form-container {
     max-width: 700px;
   }
+  /* #login-form {
+    max-width: 100px;
+  } */
 }
 
 @media (min-width: 776px) {
   .form-input {
     width: 300px;
+  }
+  #login-form {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 776px) {
+  #login-form {
+    max-width: 500px;
+    text-align: center;
+  }
+
+  .login-link {
+    display: block;
+    margin-top: 1rem;
+    padding-left: 0;
+    margin-left: 0; /* Remove left margin from "Forgot password?" link */
   }
 }
 
@@ -295,5 +412,27 @@ option {
   .form-input {
     width: 300px;
     margin-left: 18px;
+  }
+  #login-form {
+    text-align: center;
+    max-width: 340px;
+  }
+  .about-top-section {
+    max-width: 350px;
+    text-align: center;
+  }
+  .about-top-section h3 {
+    padding: 35px 0 10px;
+  }
+  .about-top-section p {
+    font-weight: 300;
+    color: #4f4f4f;
+    font-size: 20px;
+    letter-spacing: 0px;
+    line-height: 1.6;
+  }
+  .about-top-section ol {
+    font-size: 16px;
+    line-height: 2;
   }
 }
