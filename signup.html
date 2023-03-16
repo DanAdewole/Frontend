@@ -80,7 +80,7 @@
 
     <section class="container form-container">
       <div class="row mt-5">
-        <div class="col-sm-6 center">
+        <div class="col-sm-6 d-none d-sm-block">
           <div class="mb-3 form-input text-start">
             <label for="inputFirstName" class="label-text">First Name</label>
             <svg
@@ -104,7 +104,7 @@
             />
           </div>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-6 d-none d-sm-block">
           <div class="mb-3 form-input text-start">
             <label for="inputLastName" class="label-text">Last Name</label>
             <!-- Group -->
@@ -128,6 +128,30 @@
             />
           </div>
         </div>
+        <div class="col-sm-6 d-block d-sm-none">
+          <div class="mb-3 form-input text-start">
+            <label for="inputFullName" class="label-text">Full Name</label>
+            <!-- Group -->
+            <svg
+              class="emoji"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3.33337 18.3333C3.33337 16.5652 4.03575 14.8695 5.286 13.6193C6.53624 12.369 8.23193 11.6667 10 11.6667C11.7682 11.6667 13.4638 12.369 14.7141 13.6193C15.9643 14.8695 16.6667 16.5652 16.6667 18.3333H15C15 17.0072 14.4733 15.7355 13.5356 14.7978C12.5979 13.8601 11.3261 13.3333 10 13.3333C8.67396 13.3333 7.40219 13.8601 6.46451 14.7978C5.52682 15.7355 5.00004 17.0072 5.00004 18.3333H3.33337ZM10 10.8333C7.23754 10.8333 5.00004 8.59583 5.00004 5.83333C5.00004 3.07083 7.23754 0.833328 10 0.833328C12.7625 0.833328 15 3.07083 15 5.83333C15 8.59583 12.7625 10.8333 10 10.8333ZM10 9.16666C11.8417 9.16666 13.3334 7.67499 13.3334 5.83333C13.3334 3.99166 11.8417 2.49999 10 2.49999C8.15837 2.49999 6.66671 3.99166 6.66671 5.83333C6.66671 7.67499 8.15837 9.16666 10 9.16666Z"
+                fill="#A9A9A9"
+              ></path>
+            </svg>
+            <input
+              type="text"
+              id="inputFullName"
+              placeholder="Enter First and Last Name"
+            />
+          </div>
+        </div>
       </div>
       <div class="row">
         <div class="col-sm-6">
@@ -140,7 +164,7 @@
         </div>
         <div class="col-sm-6">
           <div class="mb-3 form-input text-start">
-            <label for="countrySelect" class="label-text">Country</label>
+            <label for="countrySelect" class="label-text">Country </label>
             <!-- Group -->
             <select id="countrySelect">
               <option value="USA">🇺🇸 United States</option>
@@ -153,12 +177,81 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6">.col-sm-6</div>
-        <div class="col-sm-6">col-sm-62</div>
+        <div class="col-sm-6">
+          <div class="mb-3 form-input text-start">
+            <label for="countrySelect" class="label-text">Phone </label>
+            <!-- Group -->
+            <select id="countrySelect">
+              <option value="USA">🇺🇸 United States</option>
+              <option value="CAN">🇨🇦 Canada</option>
+              <option value="GBR">🇬🇧 United Kingdom</option>
+              <option value="FRA">🇫🇷 France</option>
+              <option value="GER">🇩🇪 Germany</option>
+            </select>
+          </div>
+        </div>
       </div>
       <div class="row">
-        <div class="col-sm-6">.col-sm-6</div>
-        <div class="col-sm-6">col-sm-63</div>
+        <div class="col-sm-6">
+          <div class="mb-3 form-input text-start">
+            <label for="password" class="label-text">Password</label>
+            <svg
+              class="emoji"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 6.66667H16.6667C16.8877 6.66667 17.0996 6.75447 17.2559 6.91075C17.4122 7.06703 17.5 7.27899 17.5 7.5V17.5C17.5 17.721 17.4122 17.933 17.2559 18.0893C17.0996 18.2455 16.8877 18.3333 16.6667 18.3333H3.33333C3.11232 18.3333 2.90036 18.2455 2.74408 18.0893C2.5878 17.933 2.5 17.721 2.5 17.5V7.5C2.5 7.27899 2.5878 7.06703 2.74408 6.91075C2.90036 6.75447 3.11232 6.66667 3.33333 6.66667H5V5.83334C5 4.50725 5.52678 3.23548 6.46447 2.2978C7.40215 1.36012 8.67392 0.833336 10 0.833336C11.3261 0.833336 12.5979 1.36012 13.5355 2.2978C14.4732 3.23548 15 4.50725 15 5.83334V6.66667ZM4.16667 8.33334V16.6667H15.8333V8.33334H4.16667ZM9.16667 11.6667H10.8333V13.3333H9.16667V11.6667ZM5.83333 11.6667H7.5V13.3333H5.83333V11.6667ZM12.5 11.6667H14.1667V13.3333H12.5V11.6667ZM13.3333 6.66667V5.83334C13.3333 4.94928 12.9821 4.10143 12.357 3.47631C11.7319 2.85119 10.8841 2.5 10 2.5C9.11594 2.5 8.2681 2.85119 7.64298 3.47631C7.01786 4.10143 6.66667 4.94928 6.66667 5.83334V6.66667H13.3333Z"
+                fill="#A9A9A9"
+              ></path>
+            </svg>
+            <span id="toggle-password" class="toggle-password">
+              <i class="fa-regular fa-eye-slash eye-emoji"></i>
+            </span>
+            <input
+              type="password"
+              id="password"
+              class="toggle-password"
+              placeholder="Enter Password"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6 d-none d-sm-block">
+          <div class="mb-3 form-input text-start">
+            <label for="confirm-password" class="label-text"
+              >Confirm Password</label
+            >
+            <svg
+              class="emoji"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M15 6.66667H16.6667C16.8877 6.66667 17.0996 6.75447 17.2559 6.91075C17.4122 7.06703 17.5 7.27899 17.5 7.5V17.5C17.5 17.721 17.4122 17.933 17.2559 18.0893C17.0996 18.2455 16.8877 18.3333 16.6667 18.3333H3.33333C3.11232 18.3333 2.90036 18.2455 2.74408 18.0893C2.5878 17.933 2.5 17.721 2.5 17.5V7.5C2.5 7.27899 2.5878 7.06703 2.74408 6.91075C2.90036 6.75447 3.11232 6.66667 3.33333 6.66667H5V5.83334C5 4.50725 5.52678 3.23548 6.46447 2.2978C7.40215 1.36012 8.67392 0.833336 10 0.833336C11.3261 0.833336 12.5979 1.36012 13.5355 2.2978C14.4732 3.23548 15 4.50725 15 5.83334V6.66667ZM4.16667 8.33334V16.6667H15.8333V8.33334H4.16667ZM9.16667 11.6667H10.8333V13.3333H9.16667V11.6667ZM5.83333 11.6667H7.5V13.3333H5.83333V11.6667ZM12.5 11.6667H14.1667V13.3333H12.5V11.6667ZM13.3333 6.66667V5.83334C13.3333 4.94928 12.9821 4.10143 12.357 3.47631C11.7319 2.85119 10.8841 2.5 10 2.5C9.11594 2.5 8.2681 2.85119 7.64298 3.47631C7.01786 4.10143 6.66667 4.94928 6.66667 5.83334V6.66667H13.3333Z"
+                fill="#A9A9A9"
+              ></path>
+            </svg>
+            <span id="toggle-password2" class="toggle-password">
+              <i class="fa-regular fa-eye-slash eye-emoji"></i>
+            </span>
+            <input
+              type="password"
+              id="confirm-password"
+              placeholder="Enter Password"
+              class="toggle-password"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="signup-btn">
+        <a href="#"><button type="button" class="btn btn-dark">SIGN UP</button></a>
       </div>
     </section>
 
