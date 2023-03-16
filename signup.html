@@ -24,11 +24,12 @@
       crossorigin="anonymous"
     />
 
-    <!-- jquery -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css"
-    />
+     <!-- jquery cdn -->
+     <script
+     src="https://code.jquery.com/jquery-3.6.3.min.js"
+     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+     crossorigin="anonymous"
+   ></script>
 
     <!-- external css -->
     <link rel="stylesheet" href="./styles.css" />
@@ -251,11 +252,12 @@
       </div>
 
       <div class="form-input">
-        <a href="#"><button type="button" class="btn btn-dark signup-btn d-block d-sm-inline">SIGN UP</button></a>
+        <a href="#"><button type="button" id="sign-up" class="btn btn-dark signup-btn d-block d-sm-inline">SIGN UP</button></a>
       </div>
     </section>
 
     <!-- external script file -->
     <script type="text/javascript" src="./script.js"></script>
+    <script src="firebase/dist/bundle.js"></script>
   </body>
 </html>
