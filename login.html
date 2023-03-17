@@ -24,6 +24,13 @@
       crossorigin="anonymous"
     />
 
+    <!-- jquery cdn -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+
     <!-- external css -->
     <link rel="stylesheet" href="./styles.css" />
 
@@ -63,6 +70,7 @@
       </div>
     </nav>
 
+    <!-- login form -->
     <section id="login-form" class="container header">
       <div class="login-title">Log in to your PowerUp Account</div>
       <form>
@@ -76,6 +84,7 @@
               placeholder="Email"
               required
             />
+            <span id="email-error" class="input-error-message"></span>
           </div>
           <div class="mb-4">
             <input
@@ -85,6 +94,7 @@
               placeholder="Password"
               required
             />
+            <span id="password-error" class="input-error-message"></span>
           </div>
         </div>
         <div class="mt-4">
@@ -96,7 +106,7 @@
             Log in
           </button>
           <span>
-            <a class="login-link" href="#">Forgot password?</a>
+            <a id="login-button" class="login-link" href="#">Forgot password?</a>
           </span>
         </div>
       </form>
@@ -104,5 +114,6 @@
 
     <!-- external script file -->
     <script type="text/javascript" src="./script.js"></script>
+    <script src="firebase/dist/bundle.js"></script>
   </body>
 </html>
