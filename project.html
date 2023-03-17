@@ -24,11 +24,12 @@
       crossorigin="anonymous"
     />
 
-    <!-- jquery -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.min.css"
-    />
+    <!-- jquery cdn -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
 
     <!-- external css -->
     <link rel="stylesheet" href="./styles.css" />
@@ -40,7 +41,7 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid px-5 py-3">
-        <a class="navbar-brand" href="./index.html">PowerUp</a>
+        <a class="navbar-brand" href="./project.html">PowerUp</a>
         <button
           id="navbarToggleBtn"
           class="navbar-toggler"
@@ -69,7 +70,11 @@
             </li>
             <li class="nav-item">
               <a href="#"
-                ><button class="btn btn-dark m-1 btn-shadow" type="button">
+                ><button
+                  id="logout-button"
+                  class="btn btn-dark m-1 btn-shadow"
+                  type="button"
+                >
                   Donate
                 </button></a
               >
@@ -417,28 +422,28 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3 col-6 col-xs-3">
-			<h4>Learn More</h4>
+            <h4>Learn More</h4>
             <p>Lorem, ipsum dolor</p>
-			<p>Lorem, ipsum dolor</p>
-			<p>Lorem, ipsum dolor</p>
+            <p>Lorem, ipsum dolor</p>
+            <p>Lorem, ipsum dolor</p>
           </div>
           <div class="col-md-3 col-6 col-xs-3">
             <h4>Campaign Categories</h4>
             <p>Lorem, ipsum dolor</p>
-			<p>Lorem, ipsum dolor</p>
-			<p>Lorem, ipsum dolor</p>
+            <p>Lorem, ipsum dolor</p>
+            <p>Lorem, ipsum dolor</p>
           </div>
           <div class="col-md-3 col-6 col-xs-3">
             <h4>Learn More</h4>
             <p>Lorem, ipsum dolor</p>
-			<p>Lorem, ipsum dolor</p>
-			<p>Lorem, ipsum dolor</p>
+            <p>Lorem, ipsum dolor</p>
+            <p>Lorem, ipsum dolor</p>
           </div>
           <div class="col-md-3 col-6 col-xs-3">
             <h4>Others</h4>
             <p>Lorem, ipsum dolor</p>
-			<p>Lorem, ipsum dolor</p>
-			<p>Lorem, ipsum dolor</p>
+            <p>Lorem, ipsum dolor</p>
+            <p>Lorem, ipsum dolor</p>
           </div>
         </div>
       </div>
@@ -446,5 +451,6 @@
 
     <!-- external script file -->
     <script type="text/javascript" src="./script.js"></script>
+    <script src="firebase/dist/bundle.js"></script>
   </body>
 </html>
