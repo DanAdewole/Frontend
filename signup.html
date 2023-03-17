@@ -24,12 +24,12 @@
       crossorigin="anonymous"
     />
 
-     <!-- jquery cdn -->
-     <script
-     src="https://code.jquery.com/jquery-3.6.3.min.js"
-     integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-     crossorigin="anonymous"
-   ></script>
+    <!-- jquery cdn -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
 
     <!-- external css -->
     <link rel="stylesheet" href="./styles.css" />
@@ -102,7 +102,9 @@
               id="inputFirstName"
               placeholder="Enter First Name"
               class="input-text"
+              required
             />
+            <span id="name-error" class="error-message"></span>
           </div>
         </div>
         <div class="col-sm-6 d-none d-sm-block">
@@ -126,6 +128,7 @@
               type="text"
               id="inputLastName"
               placeholder="Enter Last Name"
+              required
             />
           </div>
         </div>
@@ -160,7 +163,8 @@
             <label for="inputEmail" class="label-text">Email Address</label>
             <i class="fa-regular fa-envelope-open emoji"></i>
 
-            <input type="email" id="inputEmail" placeholder="Enter Email" />
+            <input type="email" id="inputEmail" placeholder="Enter Email" required/>
+            <span id="email-error" class="error-message"></span>
           </div>
         </div>
         <div class="col-sm-6">
@@ -217,7 +221,10 @@
               id="password"
               class="toggle-password"
               placeholder="Enter Password"
+              minlength="6"
+              required
             />
+            <span id="password-error" class="error-message"></span>
           </div>
         </div>
         <div class="col-sm-6 d-none d-sm-block">
@@ -246,13 +253,24 @@
               id="confirm-password"
               placeholder="Enter Password"
               class="toggle-password"
+              minlength="6"
+              required
             />
+            <span id="password-error" class="error-message"></span>
           </div>
         </div>
       </div>
 
       <div class="form-input">
-        <a href="#"><button type="button" id="sign-up" class="btn btn-dark signup-btn d-block d-sm-inline">SIGN UP</button></a>
+        <a href="#"
+          ><button
+            type="button"
+            id="sign-up"
+            class="btn btn-dark signup-btn d-block d-sm-inline"
+          >
+            SIGN UP
+          </button></a
+        >
       </div>
     </section>
 
