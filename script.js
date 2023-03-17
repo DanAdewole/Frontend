@@ -80,7 +80,10 @@ if (mediaQuery.matches) {
     emailInput.addEventListener("input", validateSecondForm);
   }
   if (passwordInput) {
-    passwordInput.addEventListener("input", validateSecondForm);
+    passwordInput.addEventListener("input", validatePasswords);
+  }
+  if (confirmPasswordInput) {
+    confirmPasswordInput.addEventListener("input", validatePasswords);
   }
 } else {
   // validate form
@@ -130,8 +133,7 @@ function validatePasswords() {
 function validateSecondForm() {
   if (
     fullNameInput.value === "" ||
-    emailInput.value === "" ||
-    passwordInput.value === ""
+    emailInput.value === "" 
   ) {
     signupButton.disabled = true;
   } else {
