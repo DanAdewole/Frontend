@@ -1,12 +1,19 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore, collection, addDoc, doc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+} from "firebase/firestore";
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  sendEmailVerification,
 } from "firebase/auth";
 
 // // set up dotenv
@@ -65,7 +72,7 @@ $("#sign-up").click(function () {
       emailError,
       passwordError
     );
-    console.log("media query does not match")
+    console.log("media query does not match");
   }
 });
 
@@ -104,7 +111,14 @@ function createNewUser(
       // Signed in
       const user = userCredential.user;
       console.log(user.email);
+
       saveUserDetails(firstName, lastName, email);
+
+      sendEmailVerification(auth.currentUser).then(() => {
+        // Email verification sent!
+        // ...
+      });
+
       // ...
     })
     .catch((error) => {
@@ -174,23 +188,6 @@ function SignInUser(email, password, emailError, passwordError) {
     });
 }
 
-const actionCodeSettings = {
-  // URL you want to redirect back to. The domain (www.example.com) for this
-  // URL must be in the authorized domains list in the Firebase Console.
-  url: "https://www.example.com/finishSignUp?cartId=1234",
-  // This must be true.
-  handleCodeInApp: true,
-  iOS: {
-    bundleId: "com.example.ios",
-  },
-  android: {
-    packageName: "com.example.android",
-    installApp: true,
-    minimumVersion: "12",
-  },
-  dynamicLinkDomain: "example.page.link",
-};
-
 // sign out user with firebase
 function SignOut() {
   const auth = getAuth();
@@ -214,9 +211,17 @@ onAuthStateChanged(auth, (user) => {
     const uid = user.uid;
     // Check if the user is not already on the project.html page
 
-    // if (window.location.href.indexOf("project.html") === -1) {
-    //   window.location.href = "project.html";
-    // }
+    if (user.emailVerified) {
+      // User's email is verified, redirect to project page
+      if (window.location.href.indexOf("project.html") === -1) {
+        window.location.href = "project.html";
+      }
+    } else {
+      // User's email is not verified, redirect to verification page
+      if (window.location.href.indexOf("verify.html") === -1) {
+        window.location.href = "verify.html";
+      }
+    }
 
     // ...
   } else {
@@ -236,7 +241,6 @@ onAuthStateChanged(auth, (user) => {
 
 // save user details to firestore
 async function saveUserDetails(firstName, lastName, email) {
-  console.log("saving to db");
   try {
     const docRef = await addDoc(collection(db, "users"), {
       firstName: firstName,
@@ -247,7 +251,4 @@ async function saveUserDetails(firstName, lastName, email) {
   } catch (e) {
     console.error("Error adding document: ", e);
   }
-  console.log("saving to db done");
 }
-
-
