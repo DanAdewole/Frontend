@@ -352,6 +352,13 @@ select:focus {
   margin-bottom: 10px;
 }
 
+/* verify */
+/* .verify {
+  text-align: center;
+  margin-top: 10rem;
+} */
+
+/* media queries */
 @media (min-width: 1200px) {
   .form-container {
     max-width: 700px;
