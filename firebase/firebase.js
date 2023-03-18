@@ -1,11 +1,19 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  setDoc,
+} from "firebase/firestore";
+import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  sendEmailVerification,
 } from "firebase/auth";
 
 // // set up dotenv
@@ -28,6 +36,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
 
 // get user details via jquery
 // on signup button click
@@ -41,14 +51,29 @@ $("#sign-up").click(function () {
   const emailError = document.querySelector("#email-error");
   const passwordError = document.querySelector("#password-error");
 
-  createNewUser(
-    email,
-    password,
-    firstName,
-    lastName,
-    emailError,
-    passwordError
-  );
+  const mediaQuery = window.matchMedia("(max-width: 576px)");
+
+  if (mediaQuery.matches) {
+    const [firstName, lastName] = fullName.split(" ");
+    createNewUser(
+      email,
+      password,
+      firstName,
+      lastName,
+      emailError,
+      passwordError
+    );
+  } else {
+    createNewUser(
+      email,
+      password,
+      firstName,
+      lastName,
+      emailError,
+      passwordError
+    );
+    console.log("media query does not match");
+  }
 });
 
 // on logout button click
@@ -78,13 +103,22 @@ function createNewUser(
   // Reset error messages
   emailError.textContent = "";
   passwordError.textContent = "";
-  
+
+  // create new user
   const auth = getAuth();
   createUserWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
       console.log(user.email);
+
+      saveUserDetails(firstName, lastName, email);
+
+      sendEmailVerification(auth.currentUser).then(() => {
+        // Email verification sent!
+        // ...
+      });
+
       // ...
     })
     .catch((error) => {
@@ -176,16 +210,45 @@ onAuthStateChanged(auth, (user) => {
     // https://firebase.google.com/docs/reference/js/firebase.User
     const uid = user.uid;
     // Check if the user is not already on the project.html page
-    if (window.location.href.indexOf("project.html") === -1) {
-      window.location.href = "project.html";
+
+    if (user.emailVerified) {
+      // User's email is verified, redirect to project page
+      if (window.location.href.indexOf("project.html") === -1) {
+        window.location.href = "project.html";
+      }
+    } else {
+      // User's email is not verified, redirect to verification page
+      if (window.location.href.indexOf("verify.html") === -1) {
+        window.location.href = "verify.html";
+      }
     }
+
     // ...
   } else {
     // User is signed out
     // Redirect to login.html if the user is not already there
-    // if (window.location.href.indexOf("login.html") === -1) {
-    //   window.location.href = "login.html";
-    // ...
-    // }
+    if (
+      window.location.href.indexOf("index.html") === -1 &&
+      window.location.href.indexOf("signup.html") === -1 &&
+      window.location.href.indexOf("login.html") === -1 &&
+      window.location.href.indexOf("about.html") === -1
+    ) {
+      window.location.href = "index.html";
+      // ...
+    }
   }
 });
+
+// save user details to firestore
+async function saveUserDetails(firstName, lastName, email) {
+  try {
+    const docRef = await addDoc(collection(db, "users"), {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+    });
+    console.log("Document written with ID: ", docRef.id);
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+}
