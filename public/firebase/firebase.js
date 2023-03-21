@@ -14,7 +14,7 @@ import {
   onAuthStateChanged,
   signOut,
   sendEmailVerification,
-  applyActionCode
+  applyActionCode,
 } from "firebase/auth";
 
 // // set up dotenv
@@ -133,20 +133,22 @@ function createNewUser(
         .then(() => {
           // Verification email sent.
           console.log("Verification email sent");
-          applyActionCode()
-          .then(() => {
+          applyActionCode().then(() => {
             console.log("Email verified successfully");
+
+            saveUserDetails(firstName, lastName, email);
+            console.log("send documents to save");
+
             // Redirect user to project page
-            window.location.href = "login.html";
-          })
+            if (window.location.href.indexOf("login.html") === -1) {
+              window.location.href = "login.html";
+            }
+          });
         })
         .catch((error) => {
           // Error occurred. Inspect error.code.
           console.log(error);
         });
-
-      saveUserDetails(firstName, lastName, email);
-      console.log("send documents to save");
 
       // ...
     })
