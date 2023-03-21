@@ -108,7 +108,7 @@ $("#sign-in-button").click(function () {
 //   });
 // }
 
-// create new user with firebase
+
 function createNewUser(
   email,
   password,
@@ -129,34 +129,35 @@ function createNewUser(
       const user = userCredential.user;
       console.log(user.email);
 
-      sendEmailVerification(auth.currentUser, { handleCodeInApp: true })
+      const actionCodeSettings = {
+        url: "https://powerup-a5c2c.firebaseapp.com/login.html",
+        handleCodeInApp: true,
+      };
+
+      sendEmailVerification(auth.currentUser, actionCodeSettings)
         .then(() => {
           // Verification email sent.
           console.log("Verification email sent");
-          applyActionCode().then(() => {
-            console.log("Email verified successfully");
-
-            saveUserDetails(firstName, lastName, email);
-            console.log("send documents to save");
-
-            // Redirect user to project page
-            if (window.location.href.indexOf("project.html") === -1) {
-              window.location.href = "project.html";
-            }
-          });
+          // Verification code sent to user's email address can be obtained from the email
+          // and passed to the applyActionCode method to verify the email
         })
         .catch((error) => {
           // Error occurred. Inspect error.code.
           console.log(error);
+          // Display error message
+          passwordError.textContent = "Error sending verification email";
         });
 
+      // save user to database
+      saveUserDetails(firstName, lastName, email);
+      console.log("User details saved successfully");
       // ...
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
 
-      // display error message
+      // Display error message
       switch (errorCode) {
         case "auth/email-already-in-use":
           emailError.textContent = "Email already in use";
@@ -170,12 +171,12 @@ function createNewUser(
           passwordError.textContent = "Password must be at least 6 characters";
           break;
         case "auth/internal-error":
-          passwordError.textContent = "Ener your password";
+          passwordError.textContent = "Enter your password";
           break;
         default:
           console.log(errorCode, errorMessage);
+          passwordError.textContent = "Unknown error occurred";
       }
-      // ..
     });
 }
 
@@ -244,35 +245,24 @@ onAuthStateChanged(auth, (user) => {
 
     console.log("authentication running");
 
-    let emailVerified = false;
-
+    // }
     if (user.emailVerified) {
-      emailVerified = true;
-      // ...
-    }
-
-    if (emailVerified) {
-      // User's email was just verified, redirect to project page
-      console.log("email just verified");
-      if (window.location.href.indexOf("project.html") === -1) {
-        window.location.href = "project.html";
-      }
-    } else if (user.emailVerified) {
       // User's email is verified, redirect to project page
-      console.log("email verified");
+      console.log(user.emailVerified);
       if (window.location.href.indexOf("project.html") === -1) {
         window.location.href = "project.html";
       }
     } else {
-      // User's email is not verified, redirect to verification page
+      //   // User's email is not verified, redirect to verification page
       console.log("email not verified");
       if (window.location.href.indexOf("verify.html") === -1) {
         window.location.href = "verify.html";
         console.log("email is not verified");
       }
+      // }
+      // ...
+      // ...
     }
-    // ...
-    // ...
   } else {
     // User is signed out
     // Redirect to login.html if the user is not already there
