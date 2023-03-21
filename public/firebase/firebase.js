@@ -133,6 +133,11 @@ function createNewUser(
           // Verification email sent.
           console.log("Verification email sent");
         })
+        .then(() => {
+          console.log("Email verified successfully");
+          // Redirect user to project page
+          window.location.href = "login.html";
+        })
         .catch((error) => {
           // Error occurred. Inspect error.code.
           console.log(error);
@@ -245,7 +250,7 @@ onAuthStateChanged(auth, (user) => {
     if (emailVerified) {
       // User's email was just verified, redirect to project page
       console.log("email just verified");
-      window.location.href = "project.html";
+      window.location.href = "login.html";
     } else if (user.emailVerified) {
       // User's email is verified, redirect to project page
       console.log("email verified");
