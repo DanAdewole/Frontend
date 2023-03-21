@@ -129,26 +129,23 @@ function createNewUser(
       const user = userCredential.user;
       console.log(user.email);
 
-      saveUserDetails(firstName, lastName, email);
-      console.log("send documents to save");
+      // const actionCodeSettings = {
+      //   url: "http://powerup-a5c2c.firebaseapp.com/?email=" + user.email,
+      //   iOS: {
+      //     bundleId: "com.example.ios",
+      //   },
+      //   android: {
+      //     packageName: "com.example.android",
+      //     installApp: true,
+      //     minimumVersion: "12",
+      //   },
+      //   handleCodeInApp: false,
+      //   // When multiple custom dynamic link domains are defined, specify which
+      //   // one to use.
+      //   dynamicLinkDomain: "powerup-a5c2c.web.app",
+      // };
 
-      const actionCodeSettings = {
-        url: "http://powerup-a5c2c.firebaseapp.com/?email=" + user.email,
-        iOS: {
-          bundleId: "com.example.ios",
-        },
-        android: {
-          packageName: "com.example.android",
-          installApp: true,
-          minimumVersion: "12",
-        },
-        handleCodeInApp: false,
-        // When multiple custom dynamic link domains are defined, specify which
-        // one to use.
-        dynamicLinkDomain: "powerup-a5c2c.web.app",
-      };
-
-      sendEmailVerification(auth.currentUser, actionCodeSettings)
+      sendEmailVerification(auth.currentUser)
         .then(() => {
           // Verification email sent.
           console.log("Verification email sent");
@@ -157,13 +154,9 @@ function createNewUser(
           // Error occurred. Inspect error.code.
           console.log(error);
         });
-
-      // // verifyEmail(auth.currentUser);
-      // sendEmailVerification(auth.currentUser).then(() => {
-      //   // Email verification sent!
-      //   console.log("email sent");
-      //   // ...
-      // });
+      
+        saveUserDetails(firstName, lastName, email);
+        console.log("send documents to save");
 
       // ...
     })
@@ -258,19 +251,19 @@ onAuthStateChanged(auth, (user) => {
     // Check if the user is not already on the project.html page
 
     console.log("authentication running");
-    // if (user.emailVerified) {
-    //   // User's email is verified, redirect to project page
-    //   console.log("email verified");
-    //   if (window.location.href.indexOf("project.html") === -1) {
-    //     window.location.href = "project.html";
-    //   }
-    // } else {
-    //   // User's email is not verified, redirect to verification page
-    //   console.log("email not verified");
-    //   if (window.location.href.indexOf("verify.html") === -1) {
-    //     window.location.href = "verify.html";
-    //   }
-    // }
+    if (user.emailVerified) {
+      // User's email is verified, redirect to project page
+      console.log("email verified");
+      if (window.location.href.indexOf("project.html") === -1) {
+        window.location.href = "project.html";
+      }
+    } else {
+      // User's email is not verified, redirect to verification page
+      console.log("email not verified");
+      if (window.location.href.indexOf("verify.html") === -1) {
+        window.location.href = "verify.html";
+      }
+    }
 
     // ...
   } else {
