@@ -91,6 +91,23 @@ $("#sign-in-button").click(function () {
   SignInUser(email, password, emailError, passwordError);
 });
 
+// // resend verification email
+// const sendEmailLink = document.querySelector("#verify-email");
+
+// sendEmailLink.addEventListener("click", () => {
+//   console.log("email send")
+//   verifyEmail(auth.currentUser);
+// });
+
+// // send verification email
+// function verifyEmail(user) {
+//   sendEmailVerification(user).then(() => {
+//     // Email verification sent!
+//     console.log("email sent");
+//     // ...
+//   });
+// }
+
 // create new user with firebase
 function createNewUser(
   email,
@@ -112,12 +129,34 @@ function createNewUser(
       const user = userCredential.user;
       console.log(user.email);
 
-      saveUserDetails(firstName, lastName, email);
+      // const actionCodeSettings = {
+      //   url: "http://powerup-a5c2c.firebaseapp.com/?email=" + user.email,
+      //   iOS: {
+      //     bundleId: "com.example.ios",
+      //   },
+      //   android: {
+      //     packageName: "com.example.android",
+      //     installApp: true,
+      //     minimumVersion: "12",
+      //   },
+      //   handleCodeInApp: false,
+      //   // When multiple custom dynamic link domains are defined, specify which
+      //   // one to use.
+      //   dynamicLinkDomain: "powerup-a5c2c.web.app",
+      // };
 
-      sendEmailVerification(auth.currentUser).then(() => {
-        // Email verification sent!
-        // ...
-      });
+      sendEmailVerification(auth.currentUser)
+        .then(() => {
+          // Verification email sent.
+          console.log("Verification email sent");
+        })
+        .catch((error) => {
+          // Error occurred. Inspect error.code.
+          console.log(error);
+        });
+      
+        saveUserDetails(firstName, lastName, email);
+        console.log("send documents to save");
 
       // ...
     })
@@ -211,13 +250,16 @@ onAuthStateChanged(auth, (user) => {
     const uid = user.uid;
     // Check if the user is not already on the project.html page
 
+    console.log("authentication running");
     if (user.emailVerified) {
       // User's email is verified, redirect to project page
+      console.log("email verified");
       if (window.location.href.indexOf("project.html") === -1) {
         window.location.href = "project.html";
       }
     } else {
       // User's email is not verified, redirect to verification page
+      console.log("email not verified");
       if (window.location.href.indexOf("verify.html") === -1) {
         window.location.href = "verify.html";
       }
@@ -227,6 +269,7 @@ onAuthStateChanged(auth, (user) => {
   } else {
     // User is signed out
     // Redirect to login.html if the user is not already there
+    console.log("user is signed out");
     if (
       window.location.href.indexOf("index.html") === -1 &&
       window.location.href.indexOf("signup.html") === -1 &&

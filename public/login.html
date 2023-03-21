@@ -24,15 +24,25 @@
       crossorigin="anonymous"
     />
 
+    <!-- jquery cdn -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.3.min.js"
+      integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+      crossorigin="anonymous"
+    ></script>
+
     <!-- external css -->
     <link rel="stylesheet" href="./styles.css" />
 
-    <title>About</title>
+    <!-- site icon -->
+    <link rel="icon" type="image/png" href="./assets/Powerup_logo1.png" />
+
+    <title>Log In</title>
   </head>
   <body>
     <!-- navbar -->
     <nav class="navbar navbar-expand-sm fixed-top">
-      <div class="container-fluid px-4 py-3">
+      <div class="container-fluid px-5 py-3">
         <a class="navbar-brand" href="./index.html">PowerUp</a>
         <button
           id="navbarToggleBtn"
@@ -49,12 +59,12 @@
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link m-1" href="./index.html">Home</a>
+              <span class="m-1 nav-link">Don't have an account?</span>
             </li>
             <li class="nav-item">
               <a href="./signup.html"
                 ><button class="btn btn-dark m-1 btn-shadow" type="button">
-                  Get Started
+                  Sign Up
                 </button></a
               >
             </li>
@@ -63,56 +73,50 @@
       </div>
     </nav>
 
-    <section id="header">
-      <div class="container header about-top-section">
-        <h1>About Us</h1>
-        <h3>Why We Exist?</h3>
-        <p>
-          PowerUp was created to address the pressing need for affordable and
-          sustainable access to electricity and light in communities in need. We
-          believe that access to electricity and light is a basic human right
-          and that the lack of access to these resources is a major barrier to
-          economic and social development. Our goal is to help communities in
-          need overcome this barrier by connecting them with financing and
-          technical support to install renewable energy solutions.
-        </p>
-        <h3>Our Objectives</h3>
-        <ol>
-          <li>
-            To provide a source of revenue for communities, NGOs, and
-            individuals.
-          </li>
-          <li>
-            To enhance the provision of electrical gadgets to homes and
-            communities.
-          </li>
-          <li>
-            To simplify the financing process for renewable energy projects in
-            communities in need.
-          </li>
-          <li>
-            To connect communities with potential partners who can provide the
-            necessary financial and technical support to install renewable
-            energy solutions.
-          </li>
-        </ol>
-      </div>
+    <!-- login form -->
+    <section id="login-form" class="container header">
+      <div class="login-title">Log in to your PowerUp Account</div>
+      <form>
+        <div class="login-form">
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control input-login"
+              id="input-email"
+              aria-describedby="emailHelp"
+              placeholder="Email"
+              required
+            />
+            <span id="email-error" class="input-error-message"></span>
+          </div>
+          <div class="mb-4">
+            <input
+              type="password"
+              class="form-control input-login"
+              id="input-password"
+              placeholder="Password"
+              required
+            />
+            <span id="password-error" class="input-error-message"></span>
+          </div>
+        </div>
+        <div class="mt-4">
+          <button
+            id="sign-in-button"
+            class="btn btn-dark login-button"
+            type="button"
+          >
+            Log in
+          </button>
+          <span>
+            <a id="login-button" class="login-link" href="#">Forgot password?</a>
+          </span>
+        </div>
+      </form>
     </section>
-
-	<section class="about-footer">
-		<div class="container footer">
-		  <div class="row align-items-center">
-			<div class="col-sm-6 col-6 text-start">
-			  <span>PowerUp 2023</span>
-			</div>
-			<div class="col-sm-6 col-6 text-end">
-			  <span>NIGERIA</span>
-			</div>
-		  </div>
-		</div>
-	  </section>
 
     <!-- external script file -->
     <script type="text/javascript" src="./script.js"></script>
+    <script src="firebase/dist/bundle.js"></script>
   </body>
 </html>
