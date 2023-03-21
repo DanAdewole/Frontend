@@ -4,7 +4,8 @@
     "firebase": "^9.17.2"
   },
   "scripts": {
-    "build": "webpack"
+    "build": "cd public/firebase && webpack && npm-run-build",
+    "start": "npm-run-build"
   },
   "devDependencies": {
     "@babel/cli": "^7.21.0",
