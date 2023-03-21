@@ -109,6 +109,76 @@ $("#sign-in-button").click(function () {
 // }
 
 // create new user with firebase
+// function createNewUser(
+//   email,
+//   password,
+//   firstName,
+//   lastName,
+//   emailError,
+//   passwordError
+// ) {
+//   // Reset error messages
+//   emailError.textContent = "";
+//   passwordError.textContent = "";
+
+//   // create new user
+//   const auth = getAuth();
+//   createUserWithEmailAndPassword(auth, email, password)
+//     .then((userCredential) => {
+//       // Signed in
+//       const user = userCredential.user;
+//       console.log(user.email);
+
+//       sendEmailVerification(auth.currentUser, { handleCodeInApp: true })
+//         .then(() => {
+//           // Verification email sent.
+//           console.log("Verification email sent");
+//           applyActionCode().then(() => {
+//             console.log("Email verified successfully");
+
+//             saveUserDetails(firstName, lastName, email);
+//             console.log("send documents to save");
+
+//             // Redirect user to project page
+//             if (window.location.href.indexOf("project.html") === -1) {
+//               window.location.href = ".html";
+//             }
+//           });
+//         })
+//         .catch((error) => {
+//           // Error occurred. Inspect error.code.
+//           console.log(error);
+//         });
+
+//       // ...
+//     })
+//     .catch((error) => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+
+//       // display error message
+//       switch (errorCode) {
+//         case "auth/email-already-in-use":
+//           emailError.textContent = "Email already in use";
+//           break;
+//         case "auth/invalid-email":
+//           emailError.textContent = "Invalid email";
+//           break;
+//         case "auth/missing-email":
+//           emailError.textContent = "Enter your email";
+//         case "auth/weak-password":
+//           passwordError.textContent = "Password must be at least 6 characters";
+//           break;
+//         case "auth/internal-error":
+//           passwordError.textContent = "Ener your password";
+//           break;
+//         default:
+//           console.log(errorCode, errorMessage);
+//       }
+//       // ..
+//     });
+// }
+
 function createNewUser(
   email,
   password,
@@ -133,21 +203,23 @@ function createNewUser(
         .then(() => {
           // Verification email sent.
           console.log("Verification email sent");
-          applyActionCode().then(() => {
-            console.log("Email verified successfully");
+          // Verification code sent to user's email address can be obtained from the email
+          // and passed to the applyActionCode method to verify the email
+          console.log("Please verify your email address");
 
-            saveUserDetails(firstName, lastName, email);
-            console.log("send documents to save");
+          saveUserDetails(firstName, lastName, email);
+          console.log("User details saved successfully");
 
-            // Redirect user to project page
-            if (window.location.href.indexOf("project.html") === -1) {
-              window.location.href = "project.html";
-            }
-          });
+          // Redirect user to project page
+          if (window.location.href.indexOf("project.html") === -1) {
+            window.location.href = "project.html";
+          }
         })
         .catch((error) => {
           // Error occurred. Inspect error.code.
           console.log(error);
+          // Display error message
+          passwordError.textContent = "Error sending verification email";
         });
 
       // ...
@@ -156,7 +228,7 @@ function createNewUser(
       const errorCode = error.code;
       const errorMessage = error.message;
 
-      // display error message
+      // Display error message
       switch (errorCode) {
         case "auth/email-already-in-use":
           emailError.textContent = "Email already in use";
@@ -170,14 +242,15 @@ function createNewUser(
           passwordError.textContent = "Password must be at least 6 characters";
           break;
         case "auth/internal-error":
-          passwordError.textContent = "Ener your password";
+          passwordError.textContent = "Enter your password";
           break;
         default:
           console.log(errorCode, errorMessage);
+          passwordError.textContent = "Unknown error occurred";
       }
-      // ..
     });
 }
+
 
 // sign in user with firebase
 function SignInUser(email, password, emailError, passwordError) {
