@@ -254,7 +254,9 @@ onAuthStateChanged(auth, (user) => {
     if (emailVerified) {
       // User's email was just verified, redirect to project page
       console.log("email just verified");
-      window.location.href = "login.html";
+      if (window.location.href.indexOf("login.html") === -1) {
+        window.location.href = "login.html";
+      }
     } else if (user.emailVerified) {
       // User's email is verified, redirect to project page
       console.log("email verified");
