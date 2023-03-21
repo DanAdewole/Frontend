@@ -14,6 +14,7 @@ import {
   onAuthStateChanged,
   signOut,
   sendEmailVerification,
+  applyActionCode,
 } from "firebase/auth";
 
 // // set up dotenv
@@ -128,18 +129,26 @@ function createNewUser(
       const user = userCredential.user;
       console.log(user.email);
 
-      sendEmailVerification(auth.currentUser)
+      sendEmailVerification(auth.currentUser, { handleCodeInApp: true })
         .then(() => {
           // Verification email sent.
           console.log("Verification email sent");
+          applyActionCode().then(() => {
+            console.log("Email verified successfully");
+
+            saveUserDetails(firstName, lastName, email);
+            console.log("send documents to save");
+
+            // Redirect user to project page
+            if (window.location.href.indexOf("project.html") === -1) {
+              window.location.href = "project.html";
+            }
+          });
         })
         .catch((error) => {
           // Error occurred. Inspect error.code.
           console.log(error);
         });
-
-      saveUserDetails(firstName, lastName, email);
-      console.log("send documents to save");
 
       // ...
     })
@@ -245,7 +254,9 @@ onAuthStateChanged(auth, (user) => {
     if (emailVerified) {
       // User's email was just verified, redirect to project page
       console.log("email just verified");
-      window.location.href = "project.html";
+      if (window.location.href.indexOf("project.html") === -1) {
+        window.location.href = "project.html";
+      }
     } else if (user.emailVerified) {
       // User's email is verified, redirect to project page
       console.log("email verified");
