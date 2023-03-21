@@ -72,7 +72,6 @@ $("#sign-up").click(function () {
       emailError,
       passwordError
     );
-    console.log("media query does not match");
   }
 });
 
@@ -128,22 +127,6 @@ function createNewUser(
       // Signed in
       const user = userCredential.user;
       console.log(user.email);
-
-      // const actionCodeSettings = {
-      //   url: "http://powerup-a5c2c.firebaseapp.com/?email=" + user.email,
-      //   iOS: {
-      //     bundleId: "com.example.ios",
-      //   },
-      //   android: {
-      //     packageName: "com.example.android",
-      //     installApp: true,
-      //     minimumVersion: "12",
-      //   },
-      //   handleCodeInApp: false,
-      //   // When multiple custom dynamic link domains are defined, specify which
-      //   // one to use.
-      //   dynamicLinkDomain: "powerup-a5c2c.web.app",
-      // };
 
       sendEmailVerification(auth.currentUser)
         .then(() => {
@@ -262,8 +245,9 @@ onAuthStateChanged(auth, (user) => {
       console.log("email not verified");
       if (window.location.href.indexOf("verify.html") === -1) {
         window.location.href = "verify.html";
+        console.log("email is not verified")
       }
-    }
+    };
 
     // ...
   } else {
