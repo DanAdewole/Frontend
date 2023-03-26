@@ -140,3 +140,37 @@ function validateSecondForm() {
     signupButton.disabled = false;
   }
 }
+
+
+// Global Variables
+const countriesList = document.getElementById("countries");
+let countries; // will contain "fetched" data
+
+countriesList.addEventListener("change", newCountrySelection);
+
+function newCountrySelection(event) {
+  displayCountryInfo(event.target.value);
+}
+
+fetch("https://restcountries.com/v3.1/all")
+.then(res => res.json())
+.then(data => initialize(data))
+.catch(err => console.log("Error:", err));
+
+function initialize(countriesData) {
+  countries = countriesData;
+  // sort out the countries data
+  countries.sort((a, b) => a.name.common.localeCompare(b.name.common)); // sort countries alphabetically by name
+  let options = "";
+  countries.forEach(country => options+=`<option value="${country.cca2}"><img src="${country.flag}" alt="country's flag">${country.flag}  ${country.name.common}</option>`);
+  countriesList.innerHTML = options;
+  console.log(countriesList);
+
+  // set nigeria as the default
+  const nigeriaIndex = 159;
+  const nigeriaCca2 = countries[nigeriaIndex].cca2;
+  countriesList.value = nigeriaCca2;
+
+}
+
+
