@@ -178,14 +178,8 @@
         <div class="col-sm-6">
           <div class="mb-3 form-input text-start">
             <label for="countrySelect" class="label-text">Country </label>
-            <!-- Group -->
-            <select id="countrySelect">
-              <option value="USA">🇺🇸 United States</option>
-              <option value="CAN">🇨🇦 Canada</option>
-              <option value="GBR">🇬🇧 United Kingdom</option>
-              <option value="FRA">🇫🇷 France</option>
-              <option value="GER">🇩🇪 Germany</option>
-            </select>
+
+            <select class="country" id="countries"></select>
           </div>
         </div>
       </div>
@@ -194,13 +188,26 @@
           <div class="mb-3 form-input text-start">
             <label for="countrySelect" class="label-text">Phone </label>
             <!-- Group -->
-            <select id="countrySelect">
+            <!-- <select id="countrySelect">
+              <option value="NIG">🇳🇬 Nigeria</option>
               <option value="USA">🇺🇸 United States</option>
               <option value="CAN">🇨🇦 Canada</option>
               <option value="GBR">🇬🇧 United Kingdom</option>
               <option value="FRA">🇫🇷 France</option>
               <option value="GER">🇩🇪 Germany</option>
-            </select>
+              <option value="NE">🇳🇪 Niger</option>
+            </select> -->
+            <i class="fa-regular fa-envelope-open emoji"></i>
+            <select class="numbers" id="numbers"></select>
+
+            <input
+              class="number-input"
+              type="tel"
+              id="inputNumber"
+              placeholder="Enter Phone Number"
+              required
+            />
+            <span id="number-error" class="error-message"></span>
           </div>
         </div>
       </div>
@@ -284,5 +291,7 @@
     <script type="text/javascript" src="./script.js"></script>
     <!-- <script type="module" src="./firebase/firebase.js"></script> -->
     <script src="firebase/dist/bundle.js"></script>
+
+    <!-- external js files for country -->
   </body>
 </html>

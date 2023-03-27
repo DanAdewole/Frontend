@@ -18,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
 // change navbar toggle icon when expanded
 const navbarToggleBtn = document.querySelector("#navbarToggleBtn");
 
@@ -72,7 +71,6 @@ const signupButton = document.querySelector("#sign-up");
 const mediaQuery = window.matchMedia("(max-width: 576px)");
 
 if (mediaQuery.matches) {
-  console.log("media query matches");
   if (fullNameInput) {
     fullNameInput.addEventListener("input", validateSecondForm);
   }
@@ -131,12 +129,97 @@ function validatePasswords() {
 }
 
 function validateSecondForm() {
-  if (
-    fullNameInput.value === "" ||
-    emailInput.value === "" 
-  ) {
+  if (fullNameInput.value === "" || emailInput.value === "") {
     signupButton.disabled = true;
   } else {
     signupButton.disabled = false;
   }
+}
+
+// countries javascript
+const countriesList = document.getElementById("countries");
+let countries; // will contain "fetched" data
+
+countriesList.addEventListener("change", newCountrySelection);
+
+function newCountrySelection(event) {
+  displayCountryInfo(event.target.value);
+}
+
+fetch("https://restcountries.com/v3.1/all")
+  .then((res) => res.json())
+  .then((data) => initializeCountries(data))
+  .catch((err) => console.log("Error:", err));
+
+function initializeCountries(countriesData) {
+  countries = countriesData;
+  // sort out the countries data
+  countries.sort((a, b) => a.name.common.localeCompare(b.name.common)); // sort countries alphabetically by name
+  let options = "";
+  countries.forEach(
+    (country) =>
+      (options += `<option value="${country.cca2}"><img src="${country.flag}" alt="country's flag">${country.flag}  ${country.name.common}</option>`)
+  );
+  countriesList.innerHTML = options;
+
+  // set nigeria as the default
+  const nigeriaIndex = 159;
+  const nigeriaCca2 = countries[nigeriaIndex].cca2;
+  countriesList.value = nigeriaCca2;
+}
+
+// numbers javascript
+const numbersList = document.getElementById("numbers");
+const numberInput = document.getElementById("inputNumber");
+let numbers; // will contain "fetched" data
+
+numbersList.addEventListener("change", newNumberSelection);
+
+function newNumberSelection(event) {
+  displayNumberInfo(event.target.value);
+}
+
+fetch("https://restcountries.com/v3.1/all")
+  .then((res) => res.json())
+  .then((data) => initializeCodes(data))
+  .catch((err) => console.log("Error:", err));
+
+function initializeCodes(data) {
+  numbers = data;
+  // sort out the numbers data
+  numbers.sort((a, b) => a.name.common.localeCompare(b.name.common)); // sort numbers alphabetically by name
+  let options = "";
+  numbers.forEach((number) => {
+    let countryCodeInitial = number.idd.root;
+    let countryCodeEnd;
+    if (!countryCodeInitial) {
+      countryCodeInitial = "";
+    }
+    if (Array.isArray(number.idd.suffixes)) {
+      countryCodeEnd = number.idd.suffixes[0];
+      if (!countryCodeEnd) {
+        countryCodeEnd = "";
+      }
+    } else {
+      countryCodeEnd = "";
+    }
+
+    let countryCode = countryCodeInitial + countryCodeEnd;
+    // console.log(countryCodeInitial + countryCodeEnd);
+    options += `<option value="${countryCode}">${number.flag}</option>`;
+  });
+  numbersList.innerHTML = options;
+
+  // set nigeria as the default
+  const nigeriaIndex = 159;
+  const nigeriaCode =
+    numbers[nigeriaIndex].idd.root + numbers[nigeriaIndex].idd.suffixes[0];
+  numbersList.value = nigeriaCode;
+  numberInput.value = nigeriaCode;
+
+  // add country code
+  numbersList.addEventListener("change", () => {
+    const countryPhoneCode = numbersList.value;
+    numberInput.value = countryPhoneCode;
+  });
 }
