@@ -243,12 +243,9 @@ onAuthStateChanged(auth, (user) => {
     const uid = user.uid;
     // Check if the user is not already on the project.html page
 
-    console.log("authentication running");
-
     // }
     if (user.emailVerified) {
       // User's email is verified, redirect to project page
-      console.log(user.emailVerified);
       if (window.location.href.indexOf("project.html") === -1) {
         window.location.href = "project.html";
       }
@@ -273,7 +270,7 @@ onAuthStateChanged(auth, (user) => {
       window.location.href.indexOf("login.html") === -1 &&
       window.location.href.indexOf("about.html") === -1
     ) {
-      window.location.href = "index.html";
+      window.location.href = "login.html";
       // ...
     }
   }
