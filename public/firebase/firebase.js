@@ -246,7 +246,7 @@ function SignInUser(email, password, emailError, passwordError) {
           emailError.textContent = "User not found";
           break;
         case "auth/internal-error":
-          passwordError.textContent = "Enter your password";
+          passwordError.textContent = "Enter password or check connection";
           break;
         case "auth/wrong-password":
           passwordError.textContent = "Wrong password";
@@ -273,6 +273,8 @@ function SignOut() {
 
 // check if user is signed in
 const auth = getAuth();
+const allowedPages = ["project.html", "profile.html"];
+
 onAuthStateChanged(auth, (user) => {
   if (user) {
     // User is signed in, see docs for a list of available properties
@@ -282,9 +284,16 @@ onAuthStateChanged(auth, (user) => {
 
     if (user.emailVerified) {
       // User's email is verified, redirect to project page
-      if (window.location.href.indexOf("project.html") === -1) {
+      const currentPage = window.location.href.split("/").pop();
+
+      if (!allowedPages.includes(currentPage)) {
         window.location.href = "project.html";
       }
+        
+      // if (window.location.href.indexOf("project.html") === -1) {
+      //   window.location.href = "project.html";
+      // }
+        
     } else {
       //   // User's email is not verified, redirect to verification page
       console.log("email not verified");

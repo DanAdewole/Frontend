@@ -1,9 +1,12 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./firebase.js",
+  entry: {
+    firebase: './firebase.js',
+    profile: './profile.js'
+  },
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
   // mode: {
