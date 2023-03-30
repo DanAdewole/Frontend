@@ -133,7 +133,7 @@ async function saveUserDetails(
       country: country,
       phoneNumber: phoneNumber,
     });
-    console.log("Document written with ID: ", docRef.currentUser.uid);
+    console.log("Document written with ID: ", currentUser.uid);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
