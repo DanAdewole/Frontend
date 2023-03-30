@@ -51,25 +51,31 @@
         </button>
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link m-1" href="./project.html">Campaigns</a>
-            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link m-1" href="#" id="dashboard-link">Campaigns</a>
+            </li> -->
             <li class="nav-item">
               <a class="nav-link m-1" href="./about.html">Why we exist</a>
             </li>
             <li class="nav-item">
-              <a href="./project.html"
-                ><button class="btn btn-dark m-1 me-3 btn-shadow" type="button">
-                  Start a Campaign
-                </button></a
+              <button
+                class="btn btn-dark m-1 me-3 btn-shadow"
+                type="button"
+                id="start-campaign"
               >
+                Start a Campaign
+              </button>
             </li>
             <li class="nav-item">
-              <a href="./project.html"
-                ><button class="btn btn-dark m-1 btn-shadow" type="button">
+              <a href="#">
+                <button
+                  class="btn btn-dark m-1 btn-shadow"
+                  id="dashboard-link"
+                  type="button"
+                >
                   Donate
-                </button></a
-              >
+                </button>
+              </a>
             </li>
           </ul>
         </div>
@@ -226,7 +232,11 @@
       </div>
     </section>
 
+    <!-- jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
     <!-- external script file -->
     <script type="text/javascript" src="./script.js"></script>
+    <script src="firebase/dist/firebase.bundle.js"></script>
   </body>
 </html>

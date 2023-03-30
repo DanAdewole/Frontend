@@ -33,17 +33,18 @@
 
     <!-- external css -->
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./app_styles.css" />
 
     <!-- site icon -->
     <link rel="icon" type="image/png" href="./assets/Powerup_logo1.png" />
 
-    <title>Log In</title>
+    <title>Powerup | Profile</title>
   </head>
   <body>
     <!-- navbar -->
-    <nav class="navbar navbar-expand-sm fixed-top">
+    <nav class="navbar navbar-expand-md fixed-top">
       <div class="container-fluid px-5 py-3">
-        <a class="navbar-brand" href="./index.html">PowerUp</a>
+        <a class="navbar-brand" href="./project.html">PowerUp</a>
         <button
           id="navbarToggleBtn"
           class="navbar-toggler"
@@ -59,12 +60,19 @@
         <div class="navbar-collapse collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <span class="m-1 nav-link">Don't have an account?</span>
+              <a class="nav-link m-1" href="project.html">Dashboards</a>
             </li>
             <li class="nav-item">
-              <a href="./signup.html"
-                ><button class="btn btn-dark m-1 btn-shadow" type="button">
-                  Sign Up
+              <a class="nav-link m-1" href="./create_campaign.html">Campaigns</a>
+            </li>
+            <li class="nav-item">
+              <a href="#"
+                ><button
+                  id="logout-button"
+                  class="btn btn-dark m-1 btn-shadow"
+                  type="button"
+                >
+                  Sign out
                 </button></a
               >
             </li>
@@ -73,50 +81,13 @@
       </div>
     </nav>
 
-    <!-- login form -->
-    <section id="login-form" class="container header">
-      <div class="login-title">Log in to your PowerUp Account</div>
-      <form>
-        <div class="login-form">
-          <div class="mb-3">
-            <input
-              type="email"
-              class="form-control input-login"
-              id="input-email"
-              aria-describedby="emailHelp"
-              placeholder="Email"
-              required
-            />
-            <span id="email-error" class="input-error-message"></span>
-          </div>
-          <div class="mb-4">
-            <input
-              type="password"
-              class="form-control input-login"
-              id="input-password"
-              placeholder="Password"
-              required
-            />
-            <span id="password-error" class="input-error-message"></span>
-          </div>
-        </div>
-        <div class="mt-4">
-          <button
-            id="sign-in-button"
-            class="btn btn-dark login-button"
-            type="button"
-          >
-            Log in
-          </button>
-          <span>
-            <a id="forgot-password" class="login-link" href="#">Forgot password?</a>
-          </span>
-        </div>
-      </form>
-    </section>
+	<!-- content -->
+	<header class="container">
+		<h1 class="profile-header"></h1>
+	</header>
 
-    <!-- external script file -->
     <script type="text/javascript" src="./script.js"></script>
-    <script src="firebase/dist/firebase.bundle.js"></script>
+    <script src="firebase/dist/profile.bundle.js"></script>
+	<script src="firebase/dist/firebase.bundle.js"></script>
   </body>
 </html>

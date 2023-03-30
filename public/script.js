@@ -158,14 +158,14 @@ function initializeCountries(countriesData) {
   let options = "";
   countries.forEach(
     (country) =>
-      (options += `<option value="${country.cca2}"><img src="${country.flag}" alt="country's flag">${country.flag}  ${country.name.common}</option>`)
+      (options += `<option value="${country.name.common}">${country.flag}  ${country.name.common}</option>`)
   );
   countriesList.innerHTML = options;
 
   // set nigeria as the default
   const nigeriaIndex = 159;
-  const nigeriaCca2 = countries[nigeriaIndex].cca2;
-  countriesList.value = nigeriaCca2;
+  const nigeriaName = countries[nigeriaIndex].name.common;
+  countriesList.value = nigeriaName;
 }
 
 // numbers javascript
