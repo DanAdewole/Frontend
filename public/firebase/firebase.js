@@ -125,14 +125,15 @@ async function saveUserDetails(
   phoneNumber
 ) {
   try {
-    const docRef = await addDoc(collection(db, "users"), {
+    const currentUser = auth.currentUser;
+    const docRef = await setDoc(doc(db, "users", currentUser.uid), {
       firstName: firstName,
       lastName: lastName,
       email: email,
       country: country,
       phoneNumber: phoneNumber,
     });
-    console.log("Document written with ID: ", docRef.id);
+    console.log("Document written with ID: ", docRef.currentUser.uid);
   } catch (e) {
     console.error("Error adding document: ", e);
   }
