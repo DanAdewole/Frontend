@@ -1,5 +1,8 @@
 # PowerUp
-A crowdfunding app designed to raise funds for communities without electricity
+A crowdfunding app (using firebase) designed to raise funds for communities without electricity
+
+## Technologies used
+HTML, CSS, JavaScript, Firebase, BootStrap, jQuery
 
 # Guidelines on how to run locally 💻
 
