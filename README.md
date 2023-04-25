@@ -37,4 +37,7 @@ If you already have a copy of the repository in your local computer, make sure y
 git pull
 ```
 
+### View live site
+[Click here](https://powerup-a5c2c.web.app/) to visit the live site
+
 
